@@ -5,6 +5,7 @@ import (
 	"os"
 )
 
+// just enviroment loader
 type AppConfig struct {
 	DbUser      string
 	DbPwd       string

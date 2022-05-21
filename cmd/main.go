@@ -12,8 +12,11 @@ import (
 	"google.golang.org/grpc"
 )
 
+//load config from env
+//init serivces and register them to grpc server
+//start server
 func main() {
-	cnf := utils.LoadCnfFromEnv()
+	cnf := utils.LoadCnfFromEnv() 
 	bookRepo, err := repos.NewMysqlBookRepo(cnf)
 	if err != nil {
 		log.Fatal(err.Error())

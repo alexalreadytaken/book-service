@@ -20,6 +20,7 @@ func NewBookService(bookRepo *repos.MysqlBookRepo) *BookService {
 	}
 }
 
+//get book authors from repo and map them to proto structure
 func (service *BookService) BookAuthors(
 	ctx context.Context,
 	req *proto.BookAuthorsRequest) (*proto.BookAuthorsResponse, error) {
@@ -37,6 +38,7 @@ func (service *BookService) BookAuthors(
 	}, nil
 }
 
+//get author books from repo and map them to proto structure
 func (service *BookService) AuthorBooks(
 	ctx context.Context,
 	req *proto.AuthorBooksRequest) (*proto.AuthorBooksResponse, error) {

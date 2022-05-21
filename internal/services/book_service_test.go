@@ -28,6 +28,7 @@ func (s *BookServiceTestSuite) SetupSuite() {
 	s.upClient(lis)
 }
 
+//get the authors books and check them according to the init.sql file
 func (s *BookServiceTestSuite) TestAuthorBooksFromInitSQL() {
 	req := &proto.AuthorBooksRequest{AuthorId: 1}
 	resp, err := s.bookServiceClient.AuthorBooks(context.Background(), req)
@@ -57,6 +58,7 @@ func (s *BookServiceTestSuite) TestAuthorBooksFromInitSQL() {
 	s.Equal(int64(500), book.PagesCount)
 }
 
+//get the books authors and check them according to the init.sql file
 func (s *BookServiceTestSuite) TestBookAuthorsFromInitSQL() {
 	req := &proto.BookAuthorsRequest{BookId: 1}
 	resp, err := s.bookServiceClient.BookAuthors(context.Background(), req)
@@ -86,6 +88,9 @@ func (s *BookServiceTestSuite) TestBookAuthorsFromInitSQL() {
 	}
 }
 
+//init repo and service
+//register serive to grpc server
+//up fake connection without port
 func (s *BookServiceTestSuite) upServer() *bufconn.Listener {
 	cnf := utils.LoadCnfFromEnv()
 	lis := bufconn.Listen(1024 * 1024)
@@ -104,6 +109,7 @@ func (s *BookServiceTestSuite) upServer() *bufconn.Listener {
 	return lis
 }
 
+//map client with fake credentials to fake connection
 func (s *BookServiceTestSuite) upClient(lis *bufconn.Listener) {
 	ctx := context.Background()
 	conn, err := grpc.DialContext(ctx, "bufnet",

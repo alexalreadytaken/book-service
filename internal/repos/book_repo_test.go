@@ -16,6 +16,7 @@ func TestBookRepo(t *testing.T) {
 	suite.Run(t, &BookRepoTestSuite{})
 }
 
+//load config from env and init repo
 func (s *BookRepoTestSuite) SetupSuite() {
 	cnf := utils.LoadCnfFromEnv()
 	repo, err := NewMysqlBookRepo(cnf)
@@ -25,6 +26,7 @@ func (s *BookRepoTestSuite) SetupSuite() {
 	s.repo = repo
 }
 
+//get the authors books and check them according to the init.sql file
 func (s *BookRepoTestSuite) TestAuthorBooksFromInitSQL() {
 	s.T().Log("Start testing relation author to book from init.sql")
 	books, err := s.repo.AuthorBooks(1)
@@ -40,7 +42,7 @@ func (s *BookRepoTestSuite) TestAuthorBooksFromInitSQL() {
 			s.Equal("Beyond Games and Scripts", book.Name)
 			s.Equal(int64(500), book.PagesCount)
 		default:
-			s.Fail("unexpected book=",book)
+			s.Fail("unexpected book=", book)
 		}
 	}
 	books, err = s.repo.AuthorBooks(2)
@@ -53,6 +55,7 @@ func (s *BookRepoTestSuite) TestAuthorBooksFromInitSQL() {
 	s.Equal(int64(500), book.PagesCount)
 }
 
+//get the books authors and check them according to the init.sql file
 func (s *BookRepoTestSuite) TestBookAuthorsFromInitSQL() {
 	authors, err := s.repo.BookAuthors(1)
 	s.NoError(err)
@@ -75,7 +78,7 @@ func (s *BookRepoTestSuite) TestBookAuthorsFromInitSQL() {
 			s.Equal("*more*", author.Name)
 			s.Equal("*author*", author.Surname)
 		default:
-			s.Fail("unexpected author=",author)
+			s.Fail("unexpected author=", author)
 		}
 	}
 }

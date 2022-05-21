@@ -9,12 +9,15 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+//usually use statements
+//db for extreme sutations
 type MysqlBookRepo struct {
 	db              *sqlx.DB
 	bookAuthorsStmt *sqlx.Stmt
 	authorBooksStmt *sqlx.Stmt
 }
 
+//mysql queries for repo statements
 const (
 	bookAuthorsQuery string = `
 		select a.id, a.name, a.surname from book_author as ba 
@@ -24,6 +27,8 @@ const (
 		inner join book as b on ba.book_id=b.id where ba.author_id=?`
 )
 
+//try connect to db
+//validate & preapare statements
 func NewMysqlBookRepo(cnf *utils.AppConfig) (*MysqlBookRepo, error) {
 	url := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
 		cnf.DbUser, cnf.DbPwd, cnf.DbAddr, cnf.DbPort, cnf.DbSchema)
@@ -46,6 +51,7 @@ func NewMysqlBookRepo(cnf *utils.AppConfig) (*MysqlBookRepo, error) {
 	}, nil
 }
 
+//execute statement and map result to array
 func (repo *MysqlBookRepo) BookAuthors(bookId int64) ([]models.Author, error) {
 	var authors []models.Author
 	err := repo.bookAuthorsStmt.Select(&authors, bookId)
@@ -55,6 +61,7 @@ func (repo *MysqlBookRepo) BookAuthors(bookId int64) ([]models.Author, error) {
 	return authors, nil
 }
 
+//execute statement and map result to array
 func (repo *MysqlBookRepo) AuthorBooks(authorId int64) ([]models.Book, error) {
 	var books []models.Book
 	err := repo.authorBooksStmt.Select(&books, authorId)
