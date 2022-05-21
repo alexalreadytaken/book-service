@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package book_service;
+
+option go_package = "github.com/alexalreadytaken/book-service/proto";
+
+message Author{
+    int64 id = 1;
+    string name = 2;
+    string surname = 3;
+}
+
+message Book{
+    int64 id = 1;
+    string name = 2;
+    int64 pages_count = 3;
+}

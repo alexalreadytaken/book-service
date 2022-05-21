@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "proto/transport.proto";
+
+package book_service;
+
+option go_package = "github.com/alexalreadytaken/book-service/proto";
+
+service BookService{
+    rpc AuhorBooks(AuthorBooksRequest) returns(AuthorBooksResponse) {}
+
+    rpc BookAuthors(BookAuthorsRequest) returns (BookAuthorsResponse) {}
+}

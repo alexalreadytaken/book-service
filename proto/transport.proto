@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package book_service;
+
+import "proto/models.proto";
+
+option go_package = "github.com/alexalreadytaken/book-service/proto";
+
+message AuthorBooksRequest{
+    int64 author_id = 1;
+}
+
+message AuthorBooksResponse{
+    repeated Book books = 1;
+}
+
+message BookAuthorsRequest{
+    int64 book_id = 1;
+}
+
+message BookAuthorsResponse{
+    repeated Author authors = 1;
+}
