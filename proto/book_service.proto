@@ -7,7 +7,7 @@ package book_service;
 option go_package = "github.com/alexalreadytaken/book-service/proto";
 
 service BookService{
-    rpc AuhorBooks(AuthorBooksRequest) returns(AuthorBooksResponse) {}
+    rpc AuthorBooks(AuthorBooksRequest) returns(AuthorBooksResponse) {}
 
     rpc BookAuthors(BookAuthorsRequest) returns (BookAuthorsResponse) {}
 }

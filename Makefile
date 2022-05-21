@@ -1,3 +1,6 @@
+include .env
+export
+
 SERVICE_NAME=book-service.bin
 
 gen_proto:
@@ -13,3 +16,6 @@ build_and_run: build run
 
 test:
 	go test ./..
+
+run_db:
+	docker-compose up -d

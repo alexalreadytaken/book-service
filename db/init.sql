@@ -1,13 +1,13 @@
 CREATE TABLE book(
     id int not null auto_increment primary key,
-    name varchar(100) not null,
+    name text not null,
     pages_count int not null
 );
 
 CREATE TABLE author(
     id int not null auto_increment primary key,
-    name varchar(50) not null,
-    surname varchar(50) not null
+    name text not null,
+    surname text not null
 );
 
 CREATE TABLE book_author(
@@ -17,11 +17,11 @@ CREATE TABLE book_author(
     FOREIGN KEY (author_id) REFERENCES author (id)
 );
 
-insert into book values (1,'Игры, в которые играют люди',563);
-insert into book values (2,'За пределами игр и сценариев',500);
+insert into book values (1,'Games People Play',563);
+insert into book values (2,'Beyond Games and Scripts',500);
 
-insert into author values (1,'Эрик','Берн');
-insert into author values (2,'*Еще*','*Автор*');
+insert into author values (1,'Eric','Berne');
+insert into author values (2,'*more*','*author*');
 
 insert into book_author values (1,1);
 insert into book_author values (2,1);
@@ -31,8 +31,3 @@ insert into book_author values (2,2);
 # from book_author as ba 
 # inner join author as a on a.id=ba.author_id 
 # inner join book as b on b.id=ba.book_id;
-
-
-
-
-
