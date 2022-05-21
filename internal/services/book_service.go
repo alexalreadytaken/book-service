@@ -28,9 +28,9 @@ func (service *BookService) BookAuthors(
 		log.Println("error while gettinf info about book authors=", err.Error())
 		return nil, status.Errorf(codes.Internal, "can`t get book authors")
 	}
-	var protoAuthors []*proto.Author
+	protoAuthors := make([]*proto.Author, len(authors))
 	for i := 0; i < len(authors); i++ {
-		protoAuthors = append(protoAuthors, authors[i].ToProto())
+		protoAuthors[i] = authors[i].ToProto()
 	}
 	return &proto.BookAuthorsResponse{
 		Authors: protoAuthors,
@@ -45,9 +45,9 @@ func (service *BookService) AuthorBooks(
 		log.Println("error while gettinf info about author books=", err.Error())
 		return nil, status.Errorf(codes.Internal, "can`t get author books")
 	}
-	var protoBooks []*proto.Book
+	protoBooks := make([]*proto.Book, len(books))
 	for i := 0; i < len(books); i++ {
-		protoBooks = append(protoBooks, books[i].ToProto())
+		protoBooks[i] = books[i].ToProto()
 	}
 	return &proto.AuthorBooksResponse{
 		Books: protoBooks,
