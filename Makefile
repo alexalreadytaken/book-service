@@ -15,7 +15,7 @@ run:
 build_and_run: build run
 
 test:
-	go test ./..
+	go test ./...
 
 run_db:
 	docker-compose up -d

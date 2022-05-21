@@ -9,7 +9,6 @@ import (
 	"github.com/alexalreadytaken/book-service/internal/services"
 	"github.com/alexalreadytaken/book-service/internal/utils"
 	"github.com/alexalreadytaken/book-service/proto"
-	_ "github.com/go-sql-driver/mysql"
 	"google.golang.org/grpc"
 )
 

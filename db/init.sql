@@ -26,8 +26,3 @@ insert into author values (2,'*more*','*author*');
 insert into book_author values (1,1);
 insert into book_author values (2,1);
 insert into book_author values (2,2);
-
-# select distinct a.name,a.surname,b.name 
-# from book_author as ba 
-# inner join author as a on a.id=ba.author_id 
-# inner join book as b on b.id=ba.book_id;

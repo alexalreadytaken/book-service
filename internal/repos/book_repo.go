@@ -5,6 +5,7 @@ import (
 
 	"github.com/alexalreadytaken/book-service/internal/models"
 	"github.com/alexalreadytaken/book-service/internal/utils"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
 
